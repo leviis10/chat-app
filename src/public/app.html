@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat App</title>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/css/styles.css" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/png" />
+  </head>
+  <body>
+    <div class="chat">
+      <!-- sidebar -->
+      <div class="chat__sidebar"></div>
+
+      <!-- Main chat -->
+      <div class="chat__main">
+        <!-- Message display -->
+        <div class="chat__messages"></div>
+
+        <!-- Message control display -->
+        <div class="compose">
+          <form class="message-form">
+            <input
+              placeholder="Message"
+              type="text"
+              name="message"
+              autocomplete="off"
+              class="message-form__input"
+              required
+            />
+            <button class="btn--send-message">Send</button>
+          </form>
+          <button class="btn--send-location">Send location</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- message template -->
+    <template class="message-template">
+      <div class="message">
+        <p>
+          <span class="message__name">{{username}}</span>
+          <span class="message__meta">{{createdAt}}</span>
+        </p>
+        <p>{{message}}</p>
+      </div>
+    </template>
+
+    <!-- location message template -->
+    <template class="location-message-template">
+      <div class="message">
+        <p>
+          <span class="message__name">{{username}}</span>
+          <span class="message__meta">{{createdAt}}</span>
+        </p>
+        <p>
+          <a target="_blank" href="{{locationURL}}">My Current Location</a>
+        </p>
+      </div>
+    </template>
+
+    <!-- User list template -->
+    <template class="sidebar-template">
+      <h2 class="room-title">{{room}}</h2>
+      <h3 class="list-title">Users</h3>
+      <ul class="users">
+        {{#users}}
+        <li>{{username}}</li>
+        {{/users}}
+      </ul>
+    </template>
+
+    <!-- Script tag -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.2.1/mustache.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.2/qs.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/script.js"></script>
+  </body>
+</html>
